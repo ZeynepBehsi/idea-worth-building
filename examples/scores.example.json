@@ -1,0 +1,19 @@
+{
+  "idea": "Example: WhatsApp appointment reminders for small vet clinics",
+  "_comment": "Illustrative input only - not a real analysis. Scores 1-5, confidence high/medium/low.",
+  "scores": {
+    "pain":            {"score": 4, "confidence": "medium", "note": "No-show complaints in clinic forums"},
+    "market_size":     {"score": 3, "confidence": "medium", "note": "Clinic count x price, bottom-up"},
+    "timing":          {"score": 3, "confidence": "medium", "note": "Messaging APIs mature"},
+    "competition":     {"score": 2, "confidence": "high",   "note": "Practice-management suites include reminders"},
+    "differentiation": {"score": 3, "confidence": "low",    "note": "Simpler, cheaper, local language"},
+    "monetization":    {"score": 3, "confidence": "low",    "note": "Clinics already pay for software"},
+    "distribution":    {"score": 3, "confidence": "medium", "note": "Vet associations, supplier partners"},
+    "mvp_feasibility": {"score": 4, "confidence": "high",   "note": "One flow: booking -> reminder"},
+    "founder_fit":     {"score": 3, "confidence": "low",    "note": "Unknown domain access"},
+    "risk":            {"score": 4, "confidence": "medium", "note": "Messaging platform policy, data protection"}
+  },
+  "gate2_confirmed_by_users": false,
+  "gate5_confirmed_by_users": false,
+  "kill_flags": []
+}

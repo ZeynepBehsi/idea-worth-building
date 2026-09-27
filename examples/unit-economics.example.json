@@ -1,0 +1,11 @@
+{
+  "_comment": "Illustrative input only - replace every number with researched values.",
+  "markets": [
+    {"name": "Local", "currency": "EUR", "price_monthly": 39, "variable_cost_per_user": 6,
+     "payment_fee_pct": 2.9, "store_fee_pct": 0, "monthly_churn_pct": 4, "cac": 150,
+     "fixed_monthly": 300, "scenarios": {"pessimistic": 2, "base": 6, "optimistic": 15}},
+    {"name": "Global", "currency": "USD", "price_monthly": 49, "variable_cost_per_user": 7,
+     "payment_fee_pct": 2.9, "store_fee_pct": 0, "monthly_churn_pct": 6, "cac": 300,
+     "fixed_monthly": 300, "scenarios": {"base": 5}}
+  ]
+}
