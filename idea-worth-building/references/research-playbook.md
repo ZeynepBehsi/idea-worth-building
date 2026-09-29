@@ -7,6 +7,7 @@ the user's local language and use the sources from `locale-packs.md`. Use severa
 describe a problem with the founder's words.
 
 ## Contents
+0. Existing-owner check (if the idea comes from an existing product or organisation)
 1. Competitors (Gate 1)
 2. Pain & need evidence (Gate 2)
 3. Market size & niche
@@ -17,6 +18,16 @@ describe a problem with the founder's words.
 8. Suggested search plan (~28 searches)
 
 ---
+
+## 0. Existing-owner check
+
+Only when the idea is inspired by an existing product, company, lab or non-profit (`{owner}`):
+- `{owner} pricing`, `{owner} licensing`, `{owner} commercial plans`, `{owner} roadmap {year}`
+- `{owner} interview {year}`, `{owner} press release`, `{owner} partnership`
+- Fetch the owner's own site (about, FAQ, pricing, news) — not only third-party coverage.
+
+Record what the owner has said it will sell, give away or keep closed, with dates. If recent coverage
+contradicts older coverage, the newer statement wins; show both.
 
 ## 1. Competitors (Gate 1)
 
@@ -38,6 +49,8 @@ Per competitor, fetch the **pricing page** and one **reviews source**. Look for 
 ## 2. Pain & need evidence (Gate 2)
 
 - `reddit {problem}`, `"how do you" {problem}`, `{problem} workaround`, `{problem} spreadsheet template`
+- Frequency and urgency: how often the problem occurs (`{task} every day/week`, recurring-task
+  signals, seasonal peaks) and what happens if it is not solved today (fines, lost revenue, downtime)
 - [local] `{problem}` + "how to solve" / forum / local community sites
 - Job posts that pay humans to do the task: `{task} freelancer`, `{task} job` (and local-language equivalent)
 - Trend signals: news coverage, growth of related communities, "Google Trends {term}" articles
@@ -107,5 +120,6 @@ Always look up current prices; they change often.
 | Pricing benchmarks | 3 |
 | Costs | 2 |
 | Distribution + regulation | 2 |
+| Existing-owner check (only if applicable) | 2 |
 
 Plus fetch 5–10 key pages (pricing pages, review pages, statistics tables).

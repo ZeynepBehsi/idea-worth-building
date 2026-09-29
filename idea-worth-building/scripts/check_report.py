@@ -120,7 +120,12 @@ def main():
         if s in text:
             errors.append(f"Template sample text left in report: '{s}'")
 
-    # 8. Render diagrams
+    # 8. Riskiest-assumption table in section 11 (warning only)
+    sec = re.search(r"^##\s+11\.(.*?)(?=^##\s+\d+\.|\Z)", text, re.S | re.M)
+    if sec and not re.search(r"^\s*\|.*\|\s*$", sec.group(1), re.M):
+        warnings.append("Section 11 has no assumption table — list must-be-true assumptions with importance and evidence")
+
+    # 9. Render diagrams
     if not a.no_render and blocks:
         rerrs, rwarn = render_check(blocks)
         warnings += rwarn

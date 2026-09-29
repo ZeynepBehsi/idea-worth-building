@@ -19,12 +19,12 @@ PROFILES = {
                        monetization=5, distribution=15, mvp_feasibility=10, founder_fit=5, risk=5),
 }
 LABELS = {
-    "en": dict(pain="Problem severity / pain evidence", market_size="Market size",
+    "en": dict(pain="Pain (severity x frequency x urgency)", market_size="Market size",
                timing="Growth / timing", competition="Competition (inverse)",
                differentiation="Differentiation", monetization="Willingness to pay / value",
                distribution="Distribution (first 100 users)", mvp_feasibility="MVP time / cost",
                founder_fit="Founder fit", risk="Regulatory / platform risk (inverse)"),
-    "tr": dict(pain="Problem şiddeti / acı kanıtı", market_size="Pazar büyüklüğü",
+    "tr": dict(pain="Acı (şiddet x sıklık x aciliyet)", market_size="Pazar büyüklüğü",
                timing="Büyüme / zamanlama", competition="Rekabet (ters)",
                differentiation="Farklılaşma", monetization="Ödeme isteği / değer",
                distribution="Dağıtım (ilk 100 kullanıcı)", mvp_feasibility="MVP süresi / maliyeti",
@@ -37,6 +37,7 @@ TEXT = {
                todo="Real-world evidence still needed for GO",
                g2="Gate 2 (5 user conversations)", g5="Gate 5 (10 people committing money/time)",
                ignored="Ignored for this profile",
+               capped="Capped at 3 because confidence is low (raise the evidence, not the number)",
                v=dict(nogo="NO-GO", pivot="PIVOT", validate="VALIDATE FIRST", go="GO")),
     "tr": dict(title="Puanlama", crit="Kriter", w="Ağırlık", s="Puan (1-5)", c="Güven",
                contrib="Katkı", note="Not", total="Toplam", rng="belirsizlik aralığı",
@@ -44,9 +45,11 @@ TEXT = {
                todo="GO için hâlâ gerçek dünya kanıtı gereken kapılar",
                g2="Kapı 2 (5 kullanıcı görüşmesi)", g5="Kapı 5 (para/zaman harcayan 10 kişi)",
                ignored="Bu profilde geçersiz",
+               capped="Güven düşük olduğu için 3 ile sınırlandı (sayıyı değil kanıtı yükselt)",
                v=dict(nogo="NO-GO", pivot="PIVOT", validate="ÖNCE DOĞRULA (VALIDATE FIRST)", go="GO")),
 }
 SPREAD = {"high": 0.0, "medium": 0.5, "low": 1.0}
+LOW_CONFIDENCE_CAP = 3.0  # weak evidence cannot justify a high score
 KILL_FLAGS = {"free_dominant_no_diff", "negative_unit_economics", "regulatory_blocker", "no_payer"}
 PROFILE_IGNORES = {"portfolio": {"no_payer"}, "opensource": {"no_payer"}, "internal": {"no_payer"}}
 
@@ -75,7 +78,7 @@ def main():
         sys.exit(f"Missing criteria for profile '{profile}': {missing}")
 
     total = lo = hi = 0.0
-    rows, errors = [], []
+    rows, errors, capped = [], [], []
     for k, w in weights.items():
         if w == 0:
             continue
@@ -89,7 +92,12 @@ def main():
             errors.append(f"{k}: score must be 1-5")
             continue
         conf = str(item.get("confidence", "low")).lower()
-        sp = SPREAD.get(conf, 1.0)
+        if conf not in SPREAD:
+            conf = "low"
+        sp = SPREAD[conf]
+        if conf == "low" and s > LOW_CONFIDENCE_CAP:
+            capped.append((L[k], s))
+            s = LOW_CONFIDENCE_CAP
         p = pts(s, w)
         total, lo, hi = total + p, lo + pts(s - sp, w), hi + pts(s + sp, w)
         rows.append((L[k], w, s, conf, round(p, 1), item.get("note", "")))
@@ -120,7 +128,8 @@ def main():
 
     result = dict(idea=data.get("idea", ""), profile=profile, score=round(total, 1),
                   range=[round(lo, 1), round(hi, 1)], verdict=v, kill_flags=kills,
-                  gate2_confirmed=g2, gate5_confirmed=g5)
+                  gate2_confirmed=g2, gate5_confirmed=g5,
+                  capped=[dict(criterion=c, original=o, used=LOW_CONFIDENCE_CAP) for c, o in capped])
     if a.json:
         print(json.dumps(result, ensure_ascii=False, indent=2))
         return
@@ -138,6 +147,8 @@ def main():
         print(f"\n{T['kills']}:")
         for k in kills:
             print(f"- {k['flag']}: {k.get('reason', '')}")
+    if capped:
+        print(f"\n{T['capped']}: " + ", ".join(f"{c} ({o:g} → 3)" for c, o in capped))
     if skipped:
         print(f"\n({T['ignored']}: {', '.join(skipped)})")
     if unknown:

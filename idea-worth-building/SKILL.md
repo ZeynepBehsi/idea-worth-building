@@ -76,6 +76,12 @@ any potential users and what they heard; time and budget for the next 3 months; 
 (data, audience, expertise, channel). If the user says "just analyze", proceed and mark those items
 [? Needs you]. Restate the idea and your assumptions in 2–3 lines, then start research.
 
+**Existing-owner check.** If the idea is inspired by, copied from or built on an existing product,
+company, lab or non-profit, first search what *that owner* has said about its own plans (pricing,
+licensing, commercial roadmap, open-sourcing, partnerships) in its site, press releases and recent
+interviews. "They don't sell it" and "they plan to sell it" lead to completely different analyses;
+state which one the evidence shows before Gate 1.
+
 ### Phase 1 — Gate 1: Has it been done before?
 
 Follow `research-playbook.md` §1. Search in English **and** in the local language separately — "no
@@ -94,6 +100,7 @@ you believe.
 ### Phase 2 — Gate 2: Is there real need / what is the difference?
 
 - Pain evidence: forums, Reddit, local complaint sites, app reviews, workarounds people built, jobs that pay humans to do the task.
+- Judge pain on three axes, not one: **severity** (how bad when it happens), **frequency** (daily, monthly, once a year?) and **urgency** (must it be solved now, or can it wait?). A severe but once-a-year problem is a much weaker business than a moderate daily one; say which pattern the evidence shows.
 - Differentiation matrix vs top 3–5 competitors: faster / cheaper / different audience / better UX / different business model / local advantage (language, local pricing and payments, local regulation).
 - **Net difference?** It counts only if a user would switch for it. "Uses AI" alone is not a difference.
 - Desk research can at best reach "Partial — desk research". A full pass needs the founder's 5 user conversations. Provide a 5–7 question interview script about past behaviour ("last time this happened, what did you do?"), not hypothetical future ("would you use…?").
@@ -138,6 +145,7 @@ if it doesn't apply. Give the exact way to find the 10 people (who, where, what 
 - **Founder fit:** only from what the user told you about their skills, time and situation; otherwise [? Needs you].
 - **Risks:** regulation (data protection, health, finance, minors, education claims), platform dependency, big-player risk (could a large company ship this as a feature?).
 - **Devil's advocate:** the 3 strongest reasons this fails, argued seriously and specifically.
+- **Riskiest assumptions:** list 5–8 things that *must be true* for the idea to work (users have the problem, they will switch, they will pay this price, the channel works, the tech is feasible, the law allows it). Rate each for **importance** (H/M/L) and **current evidence** (strong/weak) in a table. The one with high importance and the weakest evidence is **the riskiest assumption**; name it in one sentence. Week 1 of the 30-day roadmap must test it, because if it is false nothing else matters.
 
 ### Phase 8 — Scoring and verdict
 
@@ -147,7 +155,8 @@ Read `references/scoring-rubric.md`, write `scores.json`, run:
 python scripts/score.py scores.json --profile <commercial|portfolio|internal|opensource> --lang <tr|en>
 ```
 
-Use the script's score, range, verdict and kill-flag output as-is. If you disagree with the verdict,
+Evidence quality caps the score: a criterion with `low` confidence can't score above 3, and the
+script enforces this (it caps the value and prints a note). Use the script's score, range, verdict and kill-flag output as-is. If you disagree with the verdict,
 say so and explain — never tweak scores to reach a verdict you prefer.
 
 ### Phase 9 — Write the report
@@ -175,4 +184,5 @@ Don't paste the report into chat.
 - Each query meaningfully different; reformulate on misses.
 - Primary sources (pricing pages, official statistics, store listings) over SEO listicles.
 - Date every market number; flag anything older than 3 years.
+- **Check who is talking.** A claim made by a company that sells the solution (market size from a vendor blog, "few experts exist" from a consultancy that sells the expertise, a competitor's own traction numbers) is a vendor claim: tag it `[~ Estimate]` with "(vendor claim)" — TR "(satıcı beyanı)" — unless an independent source confirms it.
 - If the research contradicts the founder's assumption, say so plainly and early.

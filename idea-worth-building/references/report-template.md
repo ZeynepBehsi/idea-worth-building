@@ -30,7 +30,7 @@ Mermaid quadrantChart.
 Opportunities found in competitor complaints. If "no competitors": demand gap or narrow search?
 
 ## 5. Need and differentiation (Gate 2)     [İhtiyaç ve Farklılaşma]
-Pain evidence (sourced). Differentiation matrix. Net difference? — reasoned.
+Pain evidence (sourced), judged on severity, frequency and urgency. Differentiation matrix. Net difference? — reasoned.
 **Your homework:** 5 user conversations + 5–7 question interview script.
 
 ## 6. Market size and niche                 [Pazar Büyüklüğü ve Niş]
@@ -55,14 +55,16 @@ Price proposal (local currency + USD), model. `unit_economics.py` output tables 
 2–3 channels for the first 100 users + cost. Founder fit (only what the user stated). Regulation /
 platform / big-player risk.
 
-## 11. Devil's advocate                     [Şeytanın Avukatı]
+## 11. Devil's advocate and riskiest assumption   [Şeytanın Avukatı ve En Riskli Varsayım]
 The 3 strongest, specific reasons this fails.
+Table: Assumption (must be true) | Importance H/M/L | Evidence strong/weak | Cheapest test.
+One sentence: **the riskiest assumption** (high importance, weakest evidence).
 
 ## 12. Scoring                              [Puanlama]
 `score.py` output as-is (+ your disagreement, if any, explained).
 
 ## 13. 30-day validation roadmap            [30 Günlük Doğrulama Yol Haritası]
-Mermaid gantt. A continue/stop criterion for each week.
+Mermaid gantt. A continue/stop criterion for each week. Week 1 tests the riskiest assumption from §11.
 
 ## 14. Sources                              [Kaynaklar]
 Numbered: title — URL — accessed date.

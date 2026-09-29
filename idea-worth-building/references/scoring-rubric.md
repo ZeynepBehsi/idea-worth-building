@@ -7,11 +7,15 @@ reports — intended: it shows the founder where the uncertainty lives.
 Score what the evidence shows, not what the idea could become. Between two scores, pick the lower
 one and say why in the note.
 
+**Confidence caps the score.** Weak evidence can't justify a high score: a criterion with `low`
+confidence is capped at 3. `score.py` enforces the cap and prints a note, so raise the evidence
+(and the confidence) rather than the number.
+
 ## Criteria
 
 | key | Criterion | 1 = | 5 = |
 |---|---|---|---|
-| `pain` | Problem severity & pain evidence | No evidence anyone cares | Many complaints, people pay for workarounds |
+| `pain` | Pain: severity × frequency × urgency, with evidence | No evidence anyone cares, or rare and can wait | Frequent, urgent, many complaints, people pay for workarounds |
 | `market_size` | Market size (bottom-up SAM) | Too small to sustain the goal | Large and reachable |
 | `timing` | Growth & timing | Shrinking / too early | Clearly growing, new enabler exists |
 | `competition` | Competition intensity (inverse) | Dominant free incumbents | Few weak competitors, gaps in reviews |

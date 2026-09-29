@@ -14,6 +14,11 @@ after three months of building.
 
 ---
 
+## What's new in 1.1
+
+Riskiest-assumption table, pain judged on severity × frequency × urgency, a confidence cap in the
+scoring script, vendor-claim tagging and an existing-owner check. See [CHANGELOG](CHANGELOG.md).
+
 ## What you get
 
 One Markdown report containing:
@@ -66,19 +71,32 @@ flowchart LR
 
 ## Installation
 
-Requirements: Claude with **web search** enabled and **code execution** (for the Python scripts). Scripts use only the Python 3 standard library. Optional: [`@mermaid-js/mermaid-cli`](https://github.com/mermaid-js/mermaid-cli) (`mmdc`) so the quality gate can render-check diagrams.
+**What you need:** a Claude account (Free, Pro, Max, Team or Enterprise) with **Code execution** and
+**web search** turned on. No coding or GitHub knowledge is needed for the Claude.ai / desktop app route.
 
-**Claude.ai / Claude app**
-1. Download this repository (Code → Download ZIP) and unzip it.
-2. Zip the `idea-worth-building/` folder on its own (the folder with `SKILL.md` must be at the top of the zip).
-3. Upload that zip in Claude's skills settings and enable it.
+### Claude.ai or the Claude desktop app (no coding, about 2 minutes)
 
-**Claude Code**
+1. **Download the skill:** [idea-worth-building.zip](https://github.com/ZeynepBehsi/idea-worth-building/releases/latest/download/idea-worth-building.zip) (latest release). Don't unzip it.
+2. **Turn on code execution:** Settings → Capabilities → *Code execution and file creation* → on. (Team/Enterprise: your admin may need to enable Skills first.)
+3. **Upload:** Customize → Skills → **+** → *Create skill* → *Upload a skill* → choose the zip.
+4. **Check it's on:** the skill appears in your list with its toggle switched on.
+5. **Try it** in a new chat: *"Is this idea worth building? …"* (make sure web search is on).
+
+**Updating to a new version:** delete the old skill from your Skills list, then upload the new zip.
+
+> Downloaded the repository with *Code → Download ZIP* instead? That zip has an extra top-level
+> folder and won't upload as-is. Use the release zip above.
+
+### Claude Code
+
 ```bash
 git clone https://github.com/ZeynepBehsi/idea-worth-building.git
 cp -r idea-worth-building/idea-worth-building ~/.claude/skills/         # personal, all projects
 # or: cp -r idea-worth-building/idea-worth-building .claude/skills/      # this project only
 ```
+
+Optional: [`@mermaid-js/mermaid-cli`](https://github.com/mermaid-js/mermaid-cli) (`mmdc`) lets the
+quality gate render-check the diagrams. Scripts use only the Python 3 standard library.
 
 ## Usage
 
@@ -167,8 +185,16 @@ bir kalite kontrol script'inden geçer.
 B2B SaaS, marketplace, devtool, AI-wrapper gibi fikir tipleri; Türkiye dahil birçok bölge için
 kaynak paketleri. Rapor, kullandığın dilde yazılır.
 
-**Kurulum:** Yukarıdaki *Installation* bölümüne bak. Claude.ai'de `idea-worth-building/` klasörünü
-tek başına zipleyip skill ayarlarından yükle; Claude Code'da klasörü `~/.claude/skills/` altına kopyala.
+**Kurulum (Claude.ai / masaüstü uygulaması, kod bilgisi gerekmez, ~2 dakika):**
+
+1. **İndir:** [idea-worth-building.zip](https://github.com/ZeynepBehsi/idea-worth-building/releases/latest/download/idea-worth-building.zip) — zip'i açma.
+2. **Kod çalıştırmayı aç:** Ayarlar → Capabilities → *Code execution and file creation* → açık. (Team/Enterprise'da önce yöneticinin Skills'i açması gerekebilir.)
+3. **Yükle:** Customize → Skills → **+** → *Create skill* → *Upload a skill* → zip'i seç.
+4. **Kontrol et:** skill listede görünsün ve anahtarı açık olsun.
+5. **Dene:** yeni bir sohbette web aramasının açık olduğundan emin ol ve *"Bu fikir kodlamaya değer mi? …"* diye yaz.
+
+**Güncelleme:** eski skill'i listeden sil, yeni zip'i yükle. Claude Code kullanıyorsan klasörü
+`~/.claude/skills/` altına kopyalaman yeterli.
 
 **Kullanım:** Fikrini yaz ve "bu fikir kodlamaya değer mi?" diye sor. Görüşme veya test sonuçlarıyla
 geri gelirsen skill fikri yeniden değerlendirir.
